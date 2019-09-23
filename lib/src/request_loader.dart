@@ -1,16 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter_base_request/src/constant.dart';
-import 'package:flutter_base_request/src/request_callback.dart';
-import 'package:flutter_base_request/src/request_exception.dart';
-import 'package:flutter_base_request/src/request_method.dart';
+import 'package:dio/adapter.dart';
+import 'package:flutter_network_request/src/constant.dart';
+import 'package:flutter_network_request/src/request_callback.dart';
+import 'package:flutter_network_request/src/request_exception.dart';
+import 'package:flutter_network_request/src/request_method.dart';
 import 'package:http/http.dart' as http;
 import 'package:dio/dio.dart';
 import 'package:http/io_client.dart';
 import 'dart:io';
 
 class BaseRequestLoader<T> {
-  static const TAG = "BaseRequestLoaderV4";
+  static const TAG = "BaseRequestLoaderV5 ";
 
   String _baseUrl;
   String _newBaseUrl;
@@ -118,7 +119,7 @@ class BaseRequestLoader<T> {
       dio.options.receiveTimeout = _timeout;
 
       Response response;
-      FormData formData = FormData.from(_params);
+      FormData formData = FormData.fromMap(_params);
       print(TAG +
           "dioRequest()=>baseurl= $_baseUrl \n endPointUrl= $_endPointUrl \n params= $_params \n isAuthor=$_isAuthRequest \n headers= _$_headers");
 
@@ -220,14 +221,14 @@ class BaseRequestLoader<T> {
           }
         }
 
-        if (ioClient != null) ioClient.close();
-        if (httpClient != null) httpClient.close();
+//        if (ioClient != null) ioClient.close();
+//        if (httpClient != null) httpClient.close();
       }
     } catch (e) {
       print(TAG + "httpRequest()=>error=" + e.toString());
       if (_callback != null) _callback.onError(e);
-      if (ioClient != null) ioClient.close();
-      if (httpClient != null) httpClient.close();
+//      if (ioClient != null) ioClient.close();
+//      if (httpClient != null) httpClient.close();
     }
   }
 }

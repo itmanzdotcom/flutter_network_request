@@ -1,5 +1,5 @@
-import 'package:flutter_base_request/src/constant.dart';
-import 'package:flutter_base_request/src/request_callback.dart';
+import 'package:flutter_network_request/src/constant.dart';
+import 'package:flutter_network_request/src/request_callback.dart';
 import 'request_loader.dart';
 import 'dart:async';
 import 'request_type.dart';
